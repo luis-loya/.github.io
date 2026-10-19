@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luis · Manufacturing AI Portfolio</title>
+<meta name="description" content="Manufacturing AI & Data Science Leader — case studies of production AI systems in automotive manufacturing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f5f1; --surface:#ffffff; --ink:#16181d; --muted:#5b6070; --line:#dddbd3;
+  --accent:#e0561b; --accent-soft:#fbe7dd; --ok:#2f7d4f; --ok-soft:#e1f1e7; --dev:#8a6d1f; --dev-soft:#f6eccb;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111317; --surface:#181b21; --ink:#eceae4; --muted:#9aa0ad; --line:#2a2e37;
+    --accent:#ff7a3d; --accent-soft:#3a2216; --ok:#6fcf97; --ok-soft:#18301f; --dev:#e3c46b; --dev-soft:#33290f;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+/* header */
+header{padding:72px 0 56px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:40px 40px;opacity:.35;mask-image:linear-gradient(90deg,transparent 40%,#000);-webkit-mask-image:linear-gradient(90deg,transparent 40%,#000)}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500}
+h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:14px 0 18px;max-width:14ch;position:relative;z-index:1}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:60ch;position:relative;z-index:1}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;position:relative;z-index:1}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:6px;text-decoration:none;font-weight:500;font-size:15px;border:1px solid var(--line);background:var(--surface)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn:hover{transform:translateY(-1px)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.stat{padding:26px 20px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-size:32px;letter-spacing:-.02em}
+.stat span{font-size:14px;color:var(--muted)}
+
+section{padding:64px 0}
+h2{font-size:28px;letter-spacing:-.01em;margin-bottom:8px}
+.sub{color:var(--muted);margin-bottom:32px;max-width:65ch}
+
+/* projects */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:12px;text-decoration:none;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.num{font-size:13px;color:var(--muted)}
+.status{font-size:12px;padding:3px 9px;border-radius:99px;font-weight:500;white-space:nowrap}
+.status.live{background:var(--ok-soft);color:var(--ok)}
+.status.dev{background:var(--dev-soft);color:var(--dev)}
+.card h3{font-size:20px;line-height:1.25}
+.card p{color:var(--muted);font-size:15px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;padding:3px 8px;border:1px solid var(--line);border-radius:4px;color:var(--muted)}
+.read{font-size:14px;color:var(--accent);font-weight:500}
+.card.feature{grid-column:1 / -1;border-left:4px solid var(--accent)}
+
+/* principles */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.pr{padding:24px 20px 24px 0;border-bottom:1px solid var(--line)}
+.pr h4{font-size:16px;margin-bottom:6px}
+.pr h4::before{content:"→ ";color:var(--accent)}
+.pr p{color:var(--muted);font-size:15px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.skills h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500}
+.skills li{list-style:none;padding:5px 0;border-bottom:1px dashed var(--line);font-size:15px}
+
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
+.about p{margin-bottom:14px;color:var(--muted);font-size:16px}
+.about p strong{color:var(--ink)}
+.facts{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px}
+.facts dt{font-size:13px;color:var(--muted);margin-top:12px}
+.facts dt:first-child{margin-top:0}
+.facts dd{font-weight:500}
+
+footer{border-top:1px solid var(--line);padding:40px 0 56px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+
+@media (max-width:760px){
+  header{padding:48px 0 40px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .grid,.principles,.about{grid-template-columns:1fr}
+  .skills{grid-template-columns:repeat(2,1fr)}
+  section{padding:48px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow mono">Manufacturing AI · Data Science · Leadership</div>
+    <h1>AI that runs on the shop floor.</h1>
+    <p class="lede">I'm Luis — 16+ years in automotive manufacturing, now designing and leading AI systems that operations teams use every day: scheduled, governed, and built for real corporate constraints.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">View case studies</a>
+      <a class="btn" href="https://linkedin.com/in/luis-alonso-loya">LinkedIn</a>
+      <a class="btn" href="https://github.com/luis-loya">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><b>16+</b><span>years in automotive manufacturing</span></div>
+    <div class="stat"><b>8</b><span>AI &amp; data systems featured</span></div>
+    <div class="stat"><b>4</b><span>running in production</span></div>
+    <div class="stat"><b>1</b><span>department-wide AI delivery standard</span></div>
+  </div>
+</div>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Case studies</h2>
+    <p class="sub">Built for a Tier-1 automotive manufacturer. Shown as architecture, decisions and outcomes — no proprietary code, data or system names.</p>
+
+    <div class="grid">
+      <a class="card feature" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/case-studies/01-downtime-intelligence-platform.md">
+        <div class="top"><span class="num mono">01 · Flagship</span><span class="status live">In production</span></div>
+        <h3>Downtime Intelligence Platform</h3>
+        <p>Multi-agent AI (severity, root cause, action planning) on top of statistical anomaly detection. Routes targeted reports to each engineer by equipment ownership; now re-platforming to a FastAPI web app with an admin UI and SQL Server config store.</p>
+        <div class="tags"><span class="tag">LangGraph</span><span class="tag">Python</span><span class="tag">SQL Server</span><span class="tag">FastAPI</span><span class="tag">Jinja2</span></div>
+        <span class="read">Read case study →</span>
+      </a>
+
+      <a class="card" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/case-studies/02-technical-availability-agent.md">
+        <div class="top"><span class="num mono">02</span><span class="status live">In production</span></div>
+        <h3>Technical Availability Reporting Agent</h3>
+        <p>Weekly TA%, MTTR, MTBF and Pareto per station, with an AI-written narrative, delivered as HTML email and PDF.</p>
+        <div class="tags"><span class="tag">LangChain</span><span class="tag">LiteLLM</span><span class="tag">SQL Server</span></div>
+        <span class="read">Read case study →</span>
+      </a>
+
+      <a class="card" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/case-studies/03-material-shortage-agent.md">
+        <div class="top"><span class="num mono">03</span><span class="status live">In production</span></div>
+        <h3>Material Shortage Monitoring Agent</h3>
+        <p>BOM explosion against inventory and planned supply to flag part numbers at risk, with an AI analyst — running reliably behind a corporate proxy.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Oracle</span><span class="tag">LLM</span></div>
+        <span class="read">Read case study →</span>
+      </a>
+
+      <a class="card" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/case-studies/04-inventory-closing-forecast.md">
+        <div class="top"><span class="num mono">04</span><span class="status dev">In development</span></div>
+        <h3>Month-End Inventory Closing Forecast</h3>
+        <p>Forecasts month-end inventory vs. target, then walks a diagnostic tree down to the action each planner should take today.</p>
+        <div class="tags"><span class="tag">ML</span><span class="tag">SAP data</span><span class="tag">Human-in-the-loop</span></div>
+        <span class="read">Read case study →</span>
+      </a>
+
+      <a class="card" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/case-studies/05-hr-policy-assistant.md">
+        <div class="top"><span class="num mono">05</span><span class="status dev">Pilot</span></div>
+        <h3>HR Policy Q&amp;A Assistant</h3>
+        <p>Tool-using AI agent that answers associate questions from the official HR document library, with memory and opt-in email.</p>
+        <div class="tags"><span class="tag">n8n</span><span class="tag">On-prem LLM</span><span class="tag">Microsoft Graph</span></div>
+        <span class="read">Read case study →</span>
+      </a>
+
+      <a class="card" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/case-studies/06-aoi-pin-escape-analysis.md">
+        <div class="top"><span class="num mono">06</span><span class="status dev">In development</span></div>
+        <h3>AOI Pin-Position Escape Analysis</h3>
+        <p>Event-triggered ML that links near- and out-of-limit pins to tooling, cavities and molds.</p>
+        <div class="tags"><span class="tag">Databricks</span><span class="tag">ML</span><span class="tag">Quality</span></div>
+        <span class="read">Read case study →</span>
+      </a>
+
+      <a class="card" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/case-studies/07-failure-wip-inventory-pipeline.md">
+        <div class="top"><span class="num mono">07</span><span class="status live">In production</span></div>
+        <h3>Failure WIP Inventory Pipeline</h3>
+        <p>Daily and monthly-yearly analytics loads sharing one schema and one logic, with logging and email alerts built in.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">SQL Server</span></div>
+        <span class="read">Read case study →</span>
+      </a>
+
+      <a class="card" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/case-studies/08-ai-ds-delivery-standard.md">
+        <div class="top"><span class="num mono">08 · Leadership</span><span class="status live">Dept. standard</span></div>
+        <h3>AI/DS Delivery Standard</h3>
+        <p>The operating model for every AI project in the department: intake, tracking, documentation, governance gate and portfolio dashboard.</p>
+        <div class="tags"><span class="tag">Azure DevOps</span><span class="tag">Power BI</span><span class="tag">Governance</span></div>
+        <span class="read">Read case study →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>How I build</h2>
+    <p class="sub">Principles that come from putting AI in front of operators, planners and engineers.</p>
+    <div class="principles">
+      <div class="pr"><h4>Automate the last mile</h4><p>Every system ends in a scheduled report, email or chat in front of the person who acts.</p></div>
+      <div class="pr"><h4>Humans decide, AI surfaces</h4><p>Deviations come with their value and evidence; people own the decision.</p></div>
+      <div class="pr"><h4>Constraints are requirements</h4><p>On-prem models, proxies and data policies are designed for from day one.</p></div>
+      <div class="pr"><h4>Config over code</h4><p>Targets, thresholds and routing live where operations can change them.</p></div>
+      <div class="pr"><h4>Document by default</h4><p>PRD, BRD, SRS, architecture and prompting guides on every project.</p></div>
+      <div class="pr"><h4>Govern before go-live</h4><p>Risk classification and a release checklist are a gate, not an afterthought.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Toolbox</h2>
+    <p class="sub">What I use to take a project from data to decision.</p>
+    <div class="skills">
+      <div><h4>AI / ML</h4><ul><li>LangGraph</li><li>LangChain</li><li>LiteLLM</li><li>n8n AI agents</li><li>LLM prompt design</li></ul></div>
+      <div><h4>Data</h4><ul><li>Python · pandas</li><li>SQL Server</li><li>Oracle</li><li>Databricks</li><li>SAP data</li></ul></div>
+      <div><h4>Delivery</h4><ul><li>FastAPI</li><li>Jinja2 · HTML/PDF</li><li>Microsoft Graph</li><li>Task scheduling</li><li>GitHub</li></ul></div>
+      <div><h4>Management</h4><ul><li>Azure DevOps</li><li>Power BI</li><li>AI governance</li><li>Requirements (PRD/BRD/SRS)</li><li>Stakeholder alignment</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap about">
+    <div>
+      <h2>About</h2>
+      <p class="sub" style="margin-bottom:20px">From quality engineer to AI leader.</p>
+      <p>My career has moved through <strong>quality engineering, human resources, product coordination, Industry 4.0 leadership and data science</strong> — all inside automotive manufacturing.</p>
+      <p>That path is why my AI projects start from the operator's, planner's or engineer's problem, not from the model. I'm now growing into <strong>technology management roles</strong>, where I can scale this way of working across teams.</p>
+    </div>
+    <dl class="facts">
+      <dt>Location</dt><dd>Ciudad Juárez, Mexico</dd>
+      <dt>Education</dt><dd>B.S. Computer Systems Engineering<br>MBA — Universidad Autónoma de Ciudad Juárez</dd>
+      <dt>Certifications</dt><dd>Corporate Data Science Expert credential</dd>
+      <dt>Languages</dt><dd>Spanish · English</dd>
+    </dl>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Luis · Manufacturing AI Portfolio</span>
+    <span><a href="https://linkedin.com/in/luis-alonso-loya">LinkedIn</a> · <a href="https://github.com/luis-loya">GitHub</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
